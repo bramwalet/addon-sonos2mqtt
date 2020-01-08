@@ -10,6 +10,8 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+  DOCKER_CLI_EXPERIMENTAL: enabled
+  DOCKER_BUILDKIT: '1'
 
 stages:
 - stage: Build
@@ -23,14 +25,14 @@ stages:
     - task: DockerInstaller@0
       inputs:
         dockerVersion: '19.03.5'
-    - task: Bash@3
-      displayName: "Turn on experimental docker"
-      inputs:
-        targetType: 'inline'
-        script: |
-          echo '{ "experimental": true }' | sudo tee /etc/docker/daemon.json
-          sudo service docker restart
-        noRc: false
+    # - task: Bash@3
+    #   displayName: "Turn on experimental docker"
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       echo '{ "experimental": true }' | sudo tee /etc/docker/daemon.json
+    #       sudo service docker restart
+    #     noRc: false
     - task: Bash@3
       displayName: "Setup docker buildx"
       inputs:

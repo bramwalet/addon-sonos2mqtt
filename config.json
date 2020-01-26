@@ -1,0 +1,28 @@
+{
+    "name": "Sonos2mqtt",
+    "version": "1",
+    "slug": "sonos2mqtt",
+    "description": "    A smarthome bridge between your sonos system and a mqtt server.",
+    "arch": [
+        "armhf",
+        "armv7",
+        "aarch64",
+        "amd64",
+        "i386"
+    ],
+    "startup": "services",
+    "boot": "auto",
+    "ports": {
+        "6329/tcp": 6329
+    },
+    "options": {
+        "mqtt": "mqtt://localhost",
+        "device": "127.0.0.1",
+        "listener_host": "127.0.0.1"
+    },
+    "schema": {
+        "mqtt": "str",
+        "device": "str",
+        "listener_host": "str"
+    }
+}
